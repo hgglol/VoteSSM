@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 /*
 * 用户Service接口实现
 * */
-@Service
+@Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
 //    注入UserDao

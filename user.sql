@@ -39,5 +39,13 @@ createTime,
 updateTime,
 lastOperator,
 lastOpeeratorIp) values(
-
+123,
+123,
+123,
+123@qq.com,
+12345678910,
+111,
+465,
+2,
+1
 );

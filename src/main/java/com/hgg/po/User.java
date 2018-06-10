@@ -151,13 +151,14 @@ public class User {
         this.lastOperator = lastOperator;
     }
 
-    public String getLastOpeeratorIp() {
+    public String getLastOperatorIp() {
         return lastOperatorIp;
     }
 
-    public void setLastOpeeratorIp(String lastOpeeratorIp) {
-        this.lastOperatorIp = lastOpeeratorIp;
+    public void setLastOperatorIp(String lastOperatorIp) {
+        this.lastOperatorIp = lastOperatorIp;
     }
+
     @Override
     public String toString() {
         return "User{" +

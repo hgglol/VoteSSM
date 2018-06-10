@@ -1,5 +1,3 @@
-<html>
-<body>
-<h2>Hello World!</h2>
-</body>
-</html>
+<%@ page import="java.sql.*" language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8"%>
+<jsp:forward page="/WEB-INF/jsp/login.jsp"/>

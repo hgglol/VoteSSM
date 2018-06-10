@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 
 /*
 * 用户控制器
@@ -21,7 +23,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     @RequestMapping(value = "/login.action",method = RequestMethod.POST)
-    public String login (String loginAccount, String loginPassword, Model model,MockHttpSession session){
+    public String login (String loginAccount, String loginPassword, Model model,HttpSession session){
         User user = userService.findUser(loginAccount,loginPassword);
         if (user != null){
             session.setAttribute("USER_SESSION",user);

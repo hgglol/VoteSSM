@@ -17,7 +17,7 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
     <!-- 读取 db.properties -->
-    <context:property-placeholder location="db.properties" />
+    <context:property-placeholder location="classpath:db.properties" />
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" >
        <property name="driverClassName" value="${jdbc.driver}" />
         <property name="url" value="${jdbc.url}" />
@@ -32,7 +32,30 @@
 
     </bean>
     <!--通知 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="create*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+
+        </tx:attributes>
+    </tx:advice>
     <!--切面 -->
+    <aop:config>
+        <aop:advisor advice-ref="txAdvice"
+                     pointcut="execution(* com.hgg.service.*.*(..))"/>
+    </aop:config>
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
     <!--包扫描 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.hgg.dao"/>
